@@ -1,0 +1,32 @@
+{% load static %}
+<div class="card">
+    {% with user_image=user.avatar %}
+        {% if user_image %}
+            <img src="{{ user_image.url }}" class="rounded-circle" style="height: 275px" alt="not load">
+            {% else %}
+            <img src="{% static 'img/no_user.png' %}" class="avatar-img img-thumbnail" alt="image">
+        {% endif %}
+    {% endwith %}
+    <div class="card-body">
+        {% if user.username == '' %}
+            <h5>User have no username yet</h5>
+        {% else %}
+            <h5 class="card-title" style="font-size: 30px; text-align: center">{{ user.username }} </h5>
+        {% endif %}
+        {% if user.is_online %}
+        <div class="online">Online</div>
+        {% endif %}
+
+       <div class="row justify-content-between">
+           {% if request.user.username == user.username %}
+                <div class="col-sm my-2 my-sm-0 justify-content-star">
+                    <a href="{% url 'profile' pk=request.user.pk %}" class="btn btn btn-success">It's you!</a>
+                </div>
+            {% else %}
+                <div class="col-sm my-2 my-sm-0 justify-content-star" style="text-align: center">
+                    <a href="{% url 'user_detail' pk=user.pk %}" class="btn btn-primary">Check profile</a>
+           {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

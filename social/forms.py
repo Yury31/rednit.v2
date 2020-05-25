@@ -1,5 +1,6 @@
 from django import forms
-from rednit.models import Profile
+from django.forms import ModelForm
+from .models import Profile, Message
 
 
 class RegisterForm(forms.Form):
@@ -17,8 +18,28 @@ class RegisterForm(forms.Form):
             return False
         return valid
 
+
 class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
         exclude = ['user']
+
+
+class MessageForm(ModelForm):
+    class Meta:
+        model = Message
+        fields = ['message']
+        labels = {'message': ""}
+
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=100,
+                              widget=forms.TextInput(
+                                  attrs={'size': '40',
+                                         'class': 'form-control'}))
+    sender = forms.EmailField(
+        widget=forms.TextInput(attrs={'size': '40', 'class': 'form-control'}))
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control'}))
+    copy = forms.BooleanField(required=False)

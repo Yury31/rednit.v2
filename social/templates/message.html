@@ -1,0 +1,25 @@
+{% load static %}
+{% block content %}
+{% url 'profile' pk=user.profile.pk as the_user_url%}
+{% load tz %}
+<div class="list-group-item {% if not message_item.is_readed %}unreaded{% endif %}">
+    {% if message_item.author.avatar %}
+        <a href="#"><img class="avatar-comment" src=/media/{{ message_item.author.avatar }}" style="height: 20px; width: 20px" alt="image"></a>
+    {% else %}
+        <a href="#"><img class="avatar-comment" src="{% static 'img/no_user.png' %}" style="height: 20px; width: 20px" alt="image"></a>
+    {% endif %}
+    <div class="reply-body">
+        <ul class="list-inline">
+            <li class="drop-left-padding">
+                <strong class="list-group-item-heading"><a href="#">{{ message_item.author.username }}</a></strong>
+            </li>
+            {% if not message_item.is_readed %}
+                <li class="pull-right text-muted"><small>{{ message_item.pub_date|utc }} Unreaded</small></li>
+            {% else %}
+            <li class="pull-right text-muted"><small>{{ message_item.pub_date|utc }}</small></li>
+            {% endif %}
+        </ul>
+        <div>{{ message_item.message|safe }}</div>
+    </div>
+</div>
+{% endblock content %}

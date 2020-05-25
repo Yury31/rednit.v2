@@ -1,0 +1,20 @@
+<div class="home-bg">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <div class="container-fluid" >
+        <div class="text-center">
+            {% if not request.user.is_authenticated %}
+            <a role="button" href="{% url 'login' %}" class="btn btn-success my-2 my-sm-0" type="submit">Log in</a>
+            <a role="button" href="{% url 'register' %}" class="btn btn-info my-2 my-sm-0" type="submit">Sign Up</a>
+                {% else %}
+                <a style="font-size: 40pt; color: black "><strong>Начните знакомство прямо сейчас,{{ request.user.username }}!</strong></a>
+                <a role="button" href="{% url 'list' %}" class="btn btn-primary btn-lg btn-block" type="submit"> Начать!</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+</div>

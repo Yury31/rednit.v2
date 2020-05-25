@@ -1,5 +1,11 @@
+html {
+    position: relative;
+    min-height: 100px;
+}
+
 body{
     background-color: #efefef;
+
 }
 
 .content{
@@ -11,14 +17,149 @@ body{
     min-height: 500px;
     padding-top: 20px;
     padding-bottom: 20px;
+    padding-left: 15%;
+    width: auto;
 }
+
+#list_users{
+    margin: 0 0 0 250px;
+}
+
 ul.errorlist{
     color: red;
     list-style: none;
     font-size: 12px;
 }
+
 .avatar-img{
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
+
+}
+
+.block{
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    box-shadow: 0 0 5px -4px rgba(128, 128, 128, 0.69);
+    background: white;
+    padding: 10px;
+    margin: 5px;
+}
+
+.left-menu a{
+    display: block;
+    line-height: 30px;
+    color: rgb(20, 93, 148);
+}
+
+.mainpage-avatar-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.right-menu-links{
+    margin-top: 20px;
+}
+
+.right-menu-links a{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 4.5rem;
+    margin-bottom: 4.5rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  background-color: #ccc;
+}
+
+.nav-link:hover {
+  transition: all 0.4s;
+}
+
+.nav-link-collapse:after {
+  float: right;
+  content: '\f067';
+    font-family: 'FontAwesome', serif;
+}
+
+.nav-link-show:after {
+  float: right;
+  content: '\f068';
+    font-family: 'FontAwesome', serif;
+}
+
+.nav-item ul.nav-second-level {
+  padding-left: 0;
+}
+
+.nav-item ul.nav-second-level > .nav-item {
+  padding-left: 20px;
+}
+
+.container-fluid {
+    margin-left: 240px;
+    width: 70%;
+}
+
+@media (min-width: 992px) {
+  .sidenav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 3.5rem);
+    margin-top: 3.5rem;
+    background: #343a40;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar-expand-lg .sidenav {
+    flex-direction: column;
+  }
+
+  .content-wrapper {
+    margin-left: 300px;
+  }
+
+  .footer {
+    width: calc(100% - 230px);
+    margin-left: 230px;
+  }
+
+  dl, ol {
+      padding-right: 0;
+  }
+}
+
+.alert-success {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+#Status{
+    margin-left: 20px;
+    color: dodgerblue;
+    font-size: 30px
+}
+img {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
 }

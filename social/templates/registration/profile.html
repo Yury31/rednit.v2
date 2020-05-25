@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container content">
+        <h2>{{ selected_user.get_full_name }}</h2>
+    <div class="container content">
+        <div class="row">
+           <h2>{{ user.username }}  {{ age }}</h2>
+        <span class="text-muted">{{ user.get_online_info }}</span>
+            {% if is_online %}
+            <div class="online" id="Status">Online</div>
+                {% else %}
+                <div class="offline" id="Status">Offline</div>
+            {% endif %}
+        </div>
+
+        <div class="row" style="margin-left: 20px;">
+            <div class="col5">
+                {% if selected_user.profile.avatar.name %}
+                    <img src="{{ selected_user.profile.avatar.url }}" class="avatar-img img-thumbnail" alt="image">
+                {% else %}
+                    <img src="{% static 'img/user.jpg' %}" class="avatar-img img-thumbnail" alt="image">
+                {% endif %}
+                <br>
+                <br>
+                {% if selected_user.id == user.id %}
+                    <a href="{% url 'edit_profile' %}" class="btn btn-sm btn-info">Редактировать профиль</a>
+                {% endif %}
+            </div>
+            <div class="col">
+                <dl class="row">
+                    <dt class="col-sm-6 text-right">Полное имя</dt>
+                    <dd class="col-sm-6">{{ selected_user.get_full_name }}</dd>
+
+                    <dt class="col-sm-6 text-right">Email</dt>
+                    <dd class="col-sm-6">{{ selected_user.email }}</dd>
+
+                    <dt class="col-sm-6 text-right">Город</dt>
+                    <dd class="col-sm-6">{{ selected_user.profile.city }}</dd>
+
+                    <dt class="col-sm-6 text-right">Дата рождения</dt>
+                    <dd class="col-sm-6">{{ selected_user.profile.birth_date|date:"d M Y" }}</dd>
+
+                    <dt class="col-sm-6 text-right">Пол</dt>
+                    <dd class="col-sm-6">{{ selected_user.profile.get_gender_display }}</dd>
+
+                    <dt class="col-sm-6 text-right">Статус отношений</dt>
+                    <dd class="col-sm-6">{{ selected_user.profile.get_relationship_display }}</dd>
+
+                    <dt class="col-sm-6 text-right">О себе</dt>
+                    <dd class="col-sm-6"><em style="font-family: 'Times New Roman', serif;">{{ selected_user.profile.bio|linebreaks }}</em></dd>
+
+                    <dt class="col-sm-6 text-right">Put like or dislike</dt>
+                    <dd class="col-sm-6">
+                        <form action="{% url 'like_profile' %}" method="post">
+                    {% csrf_token %}
+                    {% if is_liked %}
+                        <button type="submit" name="profile_id" value="{{ user.id }}" class="btn btn-danger">Dislike</button>
+                    {% else %}
+                        <button type="submit" name="profile_id" value="{{ user.id }}" class="btn btn-primary">Like</button>
+                    {% endif %}
+                </form>
+                    </dd>
+
+                    <dt class="col-sm-3 text-right">Отметки нравится</dt>
+                    <dd class="col-sm-9">{{ total_likes }} Like{{ total_likes|pluralize }}</dd>
+
+                </dl>
+
+            <a>{{ user.id }}</a>
+
+            <div class="col-sm my-2 my-sm-0 justify-content-star">
+                    <a href="{% url 'create_dialog' user_id=user.id  %}" class="btn btn btn-success">Написать сообщение</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+ <div class="panel panel-success">
+  <div class="panel-heading">
+    <h2 class="panel-title" style="text-align: center; color: floralwhite">Feedback</h2>
+  </div>
+  <div class="panel-body">
+<div class="well well-lg">
+    <h3></h3>
+<form action="{% url 'contacts' %}" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+	<div>
+	  <label for="id_subject">Topic:</label>
+	  {{ form.subject.errors }}
+      <input class="form-control" id="id_subject" name="subject" placeholder="Topic">
+	</div>
+    &nbsp;
+	<div>
+	  <label for="id_sender">E-mail:</label>
+	  {{ form.sender.errors }}
+      <input class="form-control" id="id_sender" name="sender" placeholder="Your e-mail">
+	</div>
+    &nbsp;
+	<div>
+	  <label for="id_message">Message:</label>
+	  {{ form.message.errors }}
+      <textarea class="form-control" id="id_message" name="message" placeholder="Input your message"></textarea>
+	</div>
+    &nbsp;
+	<div>
+	  {{ form.copy.errors }}
+	  <label for="id_copy">{{ form.copy }} Send copy to yourself</label>
+	</div>
+    <br>
+	<input type="submit" class="btn btn-success"  value="Send the message"/>
+</form>
+  </div>
+</div>
+</div>
+{% endblock content %}
